@@ -1,3 +1,8 @@
-import todoApp from "./todoApp/app";
+import TODOview from "./todoApp/view/view";
+import TODOapp from "./todoApp/app";
 
-todoApp.init();
+const root = document.querySelector('.root');
+
+const todo = new TODOapp(() => {}, TODOview, () => {});
+
+todo.init(root);
