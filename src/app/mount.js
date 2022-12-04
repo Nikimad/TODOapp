@@ -1,1 +1,0 @@
-export default (root, container) => root.replaceWith(container);

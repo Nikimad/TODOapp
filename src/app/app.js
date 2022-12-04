@@ -1,29 +1,13 @@
-import getAppDOM from './render/getAppDOM';
-import mount from './mount';
-import watcher from './watcher/watcher';
-import renderList from './render/renderList';
-import addTask from './addTask';
+import ControllerTODO from "./controller/controller";
+import ModelTODO from "./model/model";
+import ViewTODO from "./view/view";
 
 
 export default (root) => {
-    const todoDOM = getAppDOM();
-    const form = todoDOM.querySelector('form');
-    const list = todoDOM.querySelector('ul');
+    const model = new ModelTODO({ tasks: [], finished: 0 });
+    const controller = new ControllerTODO(model);
+    const view = new ViewTODO(root, controller);
 
-    mount(root, todoDOM);
-
-    const state = watcher({
-        tasks: []
-    }, () => renderList(list, state.tasks));
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const taskName = formData.get('taskName');
-
-        addTask(state, taskName);
-
-        e.target.reset();
-    });
+    model.view = view;
+    view.mount(root);
 }
