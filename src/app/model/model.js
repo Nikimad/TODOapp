@@ -1,15 +1,17 @@
 export default class ModelTODO {
     constructor(initalState = { tasks: [], finished: 0 }) {
         this.state = initalState;
-        this.view = null;
     }
-    
 
-    setState(updatedTasks, finished) {
+    subscribers = [];
+
+    setState = (state) => {
+        const { updatedTasks, finished } = state;
+
         this.state.tasks = [...updatedTasks];
         this.state.finished = finished;
 
-        this.view?.observer(this.state);
+        this.subscribers.forEach((subscriber) => subscriber.listener(this.state));
     }
 
     getAllTasks = () => {
@@ -29,7 +31,7 @@ export default class ModelTODO {
 
         const updatedTasks = [task, ...tasks];
 
-        this.setState(updatedTasks, finished);
+        this.setState( { updatedTasks, finished });
     }
 
     deleteTask = (id) => {
@@ -40,7 +42,7 @@ export default class ModelTODO {
         const updatedTasks = [...tasks.slice(0, taskIndex), ...tasks.slice(taskIndex + 1)];
         const doneTasks = updatedTasks.filter((task) => task.status === 'done');
 
-        this.setState(updatedTasks, doneTasks.length);
+        this.setState( { updatedTasks, finished: doneTasks.length });
     }
 
     toggleAllTasksStatus = () => {
@@ -62,7 +64,7 @@ export default class ModelTODO {
         const updatedTasks = finished !== tasks.length ? map.allDone() : map.allUndone();
         const doneTasks = updatedTasks.filter((task) => task.status === 'done');
         
-        this.setState(updatedTasks, doneTasks.length);
+        this.setState( { updatedTasks, finished: doneTasks.length });
     }
 
     toggleTaskStatus = (id) => {
@@ -77,7 +79,7 @@ export default class ModelTODO {
         });
         const doneTasks = updatedTasks.filter((task) => task.status === 'done');
 
-        this.setState(updatedTasks, doneTasks.length);
+        this.setState( { updatedTasks, finished: doneTasks.length });
     }
 
     updateTaskText = (id, text) => {
@@ -91,6 +93,10 @@ export default class ModelTODO {
             return task;
         });
 
-        this.setState(updatedTasks, finished);
+        this.setState( { updatedTasks, finished });
+    }
+
+    addSubscriber = (handler) => {
+        this.subscribers = [...this.subscribers, handler];
     }
 };

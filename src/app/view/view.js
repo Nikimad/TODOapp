@@ -3,16 +3,30 @@ import getAppDOM from "../render/getAppDOM";
 export default class ViewTODO {
     constructor(root, controller) {
         this.root = root;
-        this.container = getAppDOM();
+        this.appDOM = getAppDOM();
         this.controller = controller;
-
-        //  temp
-        this.container.querySelector('form').addEventListener('submit', controller.onSubmit);
     }
 
-    render = (state) => console.log(state);
+    listener = (state) => this.render(state);
 
-    observer = (state) => this.render(state);
+    mount = (root) => {
+        this.appDOM.querySelector('form').addEventListener('submit', this.controller.onSubmit);
 
-    mount = (root) => root.replaceWith(this.container);
+        root.replaceWith(this.appDOM);
+    }
+
+    render = (state) => {
+        const { tasks, finished } = state;
+
+        const list = this.appDOM.querySelector('ul');
+        list.innerHTML = ''
+
+        tasks.forEach((task) => {
+            const li = document.createElement('li');
+
+            li.textContent = task;
+
+            list.append(li);
+        });
+    }
 };

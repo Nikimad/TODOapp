@@ -3,11 +3,13 @@ import ModelTODO from "./model/model";
 import ViewTODO from "./view/view";
 
 
-export default (root) => {
-    const model = new ModelTODO({ tasks: [], finished: 0 });
-    const controller = new ControllerTODO(model);
-    const view = new ViewTODO(root, controller);
+export default class AppTODO {
+    init = (Model, View, Controller, root, initalState) => {
+        const model = new Model(initalState);
+        const controller = new Controller(model);
+        const view = new View(root, controller);
 
-    model.view = view;
-    view.mount(root);
+        model.addSubscriber(view);
+        view.mount(root);
+    }
 }
