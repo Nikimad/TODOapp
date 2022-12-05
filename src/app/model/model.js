@@ -6,10 +6,11 @@ export default class ModelTODO {
     subscribers = [];
 
     setState = (state) => {
-        const { updatedTasks, finished } = state;
+        const { updatedTasks, finished, active } = state;
 
-        this.state.tasks = [...updatedTasks];
-        this.state.finished = finished;
+        this.state.tasks = updatedTasks ?? this.state.tasks;
+        this.state.finished = finished ?? this.state.finished;
+        this.state.active = active ?? this.state.active;
 
         this.subscribers.forEach((subscriber) => subscriber.listener(this.state));
     }
@@ -31,7 +32,7 @@ export default class ModelTODO {
 
         const updatedTasks = [task, ...tasks];
 
-        this.setState( { updatedTasks, finished });
+        this.setState( { updatedTasks });
     }
 
     deleteTask = (id) => {
@@ -72,7 +73,7 @@ export default class ModelTODO {
 
         const updatedTasks = tasks.map((task) => {
             if (task.id == id) {
-                tasks[taskIndex].status = tasks[taskIndex].status === 'done' ? 'undone' : 'done';
+                task.status = task.status === 'done' ? 'undone' : 'done';
             }
 
             return task;
@@ -83,7 +84,7 @@ export default class ModelTODO {
     }
 
     updateTaskText = (id, text) => {
-        const { tasks, finished } = this.state;
+        const { tasks } = this.state;
 
         const updatedTasks = tasks.map((task) => {
             if (task.id == id) {
@@ -93,10 +94,14 @@ export default class ModelTODO {
             return task;
         });
 
-        this.setState( { updatedTasks, finished });
+        this.setState( { updatedTasks });
     }
 
-    addSubscriber = (handler) => {
-        this.subscribers = [...this.subscribers, handler];
+    updateActive = (active) => this.setState({ active: active })
+
+    addSubscriber = (subscriber) => {
+        this.subscribers = [...this.subscribers, subscriber];
+
+        subscriber.listener(this.state);
     }
 };
