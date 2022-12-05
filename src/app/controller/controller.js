@@ -13,4 +13,6 @@ export default class ControllerTODO {
 
         e.target.reset();
     }
+    choseTab = (e) => {console.log(`Choose tab: ${e.target.dataset.tab}`)}
+    updateAll = () => {console.log('Update all')}
 }

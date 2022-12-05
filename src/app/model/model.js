@@ -1,5 +1,5 @@
 export default class ModelTODO {
-    constructor(initalState = { tasks: [], finished: 0 }) {
+    constructor(initalState = { tasks: [], finished: 0, active: 'all' }) {
         this.state = initalState;
     }
 
