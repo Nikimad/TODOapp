@@ -34,11 +34,12 @@ export default class ViewTODO {
     renderTabs = (activeName) => {
         this.tabs.innerHTML = '';
 
-        const allTab = this.create.tab('all', 'all' === activeName , this.controller.choseTab);
-        const doneTab = this.create.tab('done', 'done' === activeName , this.controller.choseTab);
-        const undoneTab = this.create.tab('undone', 'undone' === activeName , this.controller.choseTab);
+        const allTab = this.create.tab('all', 'All', 'all' === activeName , this.controller.choseTab);
+        const undoneTab = this.create.tab('undone', 'Active', 'undone' === activeName , this.controller.choseTab);
+        const doneTab = this.create.tab('done', 'Completed', 'done' === activeName , this.controller.choseTab);
 
-        this.tabs.append(allTab, doneTab, undoneTab);
+
+        this.tabs.append(allTab, undoneTab, doneTab);
     }
 
     renderList = (tasks) => {
@@ -46,14 +47,22 @@ export default class ViewTODO {
 
         const tasksDOM = tasks.map((task) => this.create.task(task, 
             this.controller.taskHandler.onUpdate,
-            this.controller.taskHandler.onClick,
+            this.controller.taskHandler.updateTask,
             this.controller.taskHandler.onDelete
             )
         );
 
-        console.log(tasksDOM)
-
         this.list.append(...tasksDOM);
+    }
+
+    getTasks = (tasks, active) => {
+        const map = {
+            'all': () => tasks,
+            'done': () => tasks.filter((task) => task.status === 'done'),
+            'undone': () => tasks.filter((task) => task.status === 'undone'),
+        }
+
+        return map[active]();
     }
 
     render = (state) => {
@@ -61,12 +70,11 @@ export default class ViewTODO {
 
         this.renderCounter(finished);
         this.renderTabs(active);
-        this.renderList(tasks);
+        this.renderList(this.getTasks(tasks, active));
     }
 
     mount = (root) => {
         this.initRender();
-
 
         root.replaceWith(this.container);
     }

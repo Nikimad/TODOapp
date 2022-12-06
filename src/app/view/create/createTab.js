@@ -1,4 +1,4 @@
-export default (name, active, onClick) => {
+export default (name, text, active, onClick) => {
     const tabWrapper = document.createElement('li');
     const tabName = document.createElement('a');
 
@@ -9,6 +9,8 @@ export default (name, active, onClick) => {
     }
 
     tabName.setAttribute('data-name', name);
+    
+    tabName.textContent = text;
 
     tabName.addEventListener('click', onClick);
 

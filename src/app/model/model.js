@@ -15,18 +15,6 @@ export default class ModelTODO {
         this.subscribers.forEach((subscriber) => subscriber.listener(this.state));
     }
 
-    getAllTasks = () => {
-        return this.state.tasks;
-    }
-
-    getDoneTasks = () => {
-        return this.state.tasks.filter((task) => task.status === 'done');
-    }
-
-    getUndoneTasks = () => {
-        return this.state.tasks.filter((task) => task.status === 'undone');
-    }
-
     addTask = (task) => {
         const { tasks, finished } = this.state;
 
