@@ -28,7 +28,7 @@ export default class ViewTODO {
     }
 
     renderCounter = (value) => {
-        this.counter.textContent = `items left: ${value}`;
+        this.counter.textContent = `Items left: ${value}`;
     }
 
     renderTabs = (activeName) => {

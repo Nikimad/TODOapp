@@ -1,0 +1,17 @@
+@import './container';
+@import './header';
+@import './updateAll';
+@import './form';
+@import './body';
+@import './list';
+@import './counter';
+@import './tabs';
+@import './task';
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin: 0;
+}

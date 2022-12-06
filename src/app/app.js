@@ -1,10 +1,11 @@
-import ControllerTODO from "./controller/controller";
-import ModelTODO from "./model/model";
-import ViewTODO from "./view/view";
+import './scss/app.scss';
+import ControllerTODO from "./js/controller/controller";
+import ModelTODO from "./js/model/model";
+import ViewTODO from "./js/view/view";
 
 
 export default class AppTODO {
-    init = (Model, View, Controller, root, initalState) => {
+    init = (root, initalState, Model = ModelTODO, View = ViewTODO, Controller = ControllerTODO) => {
         const model = new Model(initalState);
         const controller = new Controller(model);
         const view = new View(root, controller);

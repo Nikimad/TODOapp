@@ -1,0 +1,13 @@
+.todo__task {
+    display: flex;
+
+    border-radius: 5px;
+
+    padding: 10px;
+
+    &__text {
+        width: 100%;
+
+        padding-inline: 10px;
+    }
+}

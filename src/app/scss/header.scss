@@ -1,0 +1,7 @@
+.todo__header {
+    display: flex;
+
+    & > * {
+        width: 100%;
+    }
+}

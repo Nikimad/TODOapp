@@ -12,6 +12,7 @@ export default (task, onUpdate, updateTask, onDelete) => {
     text.textContent = task.text;
     text.addEventListener('dblclick', (e) => {
         const input = document.createElement('input');
+        input.classList.add('todo__task__input')
         input.setAttribute('type', 'text')
         input.setAttribute('autofocus', true);
         input.value = e.target.textContent;
