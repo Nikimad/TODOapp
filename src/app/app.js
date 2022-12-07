@@ -12,12 +12,17 @@ import ViewTODO from "./js/view/view";
 
 
 export default class AppTODO {
-    init = (root, initalState, Model = ModelTODO, View = ViewTODO, Controller = ControllerTODO) => {
-        const model = new Model(initalState);
+    init = (root, Model = ModelTODO, View = ViewTODO, Controller = ControllerTODO) => {
+
+        const model = new Model(JSON.parse(localStorage.getItem('state')));
         const controller = new Controller(model);
         const view = new View(root, controller);
 
         model.addSubscriber(view);
         view.mount(root);
+
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('state', JSON.stringify(model.state));
+        });
     }
 }
