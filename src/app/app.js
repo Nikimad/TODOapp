@@ -1,4 +1,8 @@
 import './scss/app.scss';
+import mark from '../assets/icons/mark.svg';
+import check from '../assets/icons/check.svg';
+import cross from '../assets/icons/cross.svg';
+import plus from '../assets/icons/plus.svg';
 import ControllerTODO from "./js/controller/controller";
 import ModelTODO from "./js/model/model";
 import ViewTODO from "./js/view/view";

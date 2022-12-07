@@ -1,13 +1,6 @@
 .todo__container {
-    display: grid;
-    row-gap: 20px;
+    font-family: sans-serif;
+    width: min(600px, calc(100% - 40px));
 
-    border-radius: 20px;
-
-    height: 400px;
-    width: 30%;
-
-    padding: 20px;
-
-    background-color: bisque;
+    background-color: $beige-200;
 }

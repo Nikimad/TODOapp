@@ -1,9 +1,9 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+body {    
     min-height: 100vh;
 
     margin: 0;
+}
+
+.todo__container {
+    margin-inline: auto;
 }

@@ -32,6 +32,13 @@ const config = {
                 test: /\.s[ac]ss$/i,
                 use: [stylesHandler, 'css-loader', 'sass-loader'],
             },
+            {
+                test: /\.svg$/,
+                type: 'asset/resource',      
+                generator: {       
+                    filename: path.join('assets/icons', '[name].[ext]'),       
+                },
+            },
         ],
     },
 };

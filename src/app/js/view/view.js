@@ -6,9 +6,9 @@ export default class ViewTODO {
         this.controller = controller;
         //  DOM
         this.container = this.create.container(['todo__container']);
-        this.tabs = this.create.container(['todo__tabs']);
+        this.tabs = this.create.list(['todo__tabs']);
+        this.list = this.create.list(['todo__list']);
         this.counter = this.create.counter();
-        this.list = this.create.list();
     }
 
     create = create

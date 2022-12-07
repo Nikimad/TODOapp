@@ -1,6 +1,6 @@
-export default () => {
+export default (classes) => {
     const list = document.createElement('ul');
-    list.classList.add('todo__list');
+    list.classList.add([...classes]);
 
     return list;
 }

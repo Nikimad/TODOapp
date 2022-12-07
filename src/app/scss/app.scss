@@ -1,17 +1,22 @@
+@import './variables';
 @import './container';
 @import './header';
-@import './updateAll';
+@import './button';
 @import './form';
-@import './body';
-@import './list';
-@import './counter';
-@import './tabs';
-@import './task';
 
 * {
     box-sizing: border-box;
 }
 
-p {
-    margin: 0;
+.todo {
+    &__counter,
+    &__list,
+    &__task__text {
+        margin: 0;
+    }
+
+    &__tabs,
+    &__list {
+        list-style: none;
+    }
 }
