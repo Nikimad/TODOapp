@@ -8,6 +8,8 @@
     color: $gray-300;
     background-color: $gray-100;
 
+    width: 100%;
+
     border-radius: 10px 10px 0 0;
 
     padding: 10px 10px 0;
@@ -50,8 +52,6 @@
 @media (min-width: 500px) {
     .todo__tab {
         text-indent:0;
-
-        width: 100%;
 
         &:nth-child(-n + 3) {
             background-image: none;
