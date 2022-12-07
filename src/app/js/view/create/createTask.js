@@ -11,15 +11,20 @@ export default (task, onUpdate, updateTask, onDelete) => {
 
     text.textContent = task.text;
     text.addEventListener('dblclick', (e) => {
+        const form = document.createElement('form');
         const input = document.createElement('input');
-        input.classList.add('todo__task__input')
-        input.setAttribute('type', 'text')
-        input.setAttribute('autofocus', true);
+        form.classList.add('todo__task__form');
+        input.classList.add('todo__task__input');
+        input.setAttribute('type', 'text');
         input.value = e.target.textContent;
 
-        input.addEventListener('focusout', () => updateTask(task.id, input.value))
+        form.append(input);
 
-        e.target.replaceWith(input);
+        input.addEventListener('focusout', () => updateTask(task.id, input.value));
+        form.addEventListener('submit', () => updateTask(task.id, input.value))
+
+        e.target.parentNode.replaceWith(form);
+        input.focus();
     });
 
     taskWrapper.append(updateButton, text, deleteButton);
