@@ -87,6 +87,15 @@ export default class ModelTODO {
 
     updateActive = (active) => this.setState({ active: active })
 
+    deletAllCompleted = () => {
+        const { tasks, finished } = this.state;
+
+        const updatedTasks = tasks.filter((task) => task.status === 'undone');
+        const doneTasks = updatedTasks.filter((task) => task.status === 'done');
+        
+        this.setState( { updatedTasks, finished: doneTasks.length });
+    }
+
     addSubscriber = (subscriber) => {
         this.subscribers = [...this.subscribers, subscriber];
 

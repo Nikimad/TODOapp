@@ -5,7 +5,22 @@
 
     background-color: $white;
 
-    border-radius: 0 0 10px 10px;
+    padding: 10px;
+
+    &::-webkit-scrollbar {
+        position:  relative;
+
+        width: 2px;
+
+        height: 95%;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        position: absolute;
+        background-color: $gray-300;
+
+        border-radius: 5px;
+    }
 
     overflow: auto;
 }

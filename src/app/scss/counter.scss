@@ -1,9 +1,12 @@
 .todo__counter {
     background-color: $white;
 
-    width: fit-content;
+    min-width: 110px;
+    max-width: 150px;
 
     border-radius: 10px 10px 0 0;
+
+    text-overflow: ellipsis;
 
     padding: 10px 10px 0;
 }

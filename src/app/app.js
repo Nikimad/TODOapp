@@ -1,4 +1,7 @@
 import './scss/app.scss';
+import active from '../assets/icons/active.svg';
+import completed from '../assets/icons/completed.svg';
+import all from '../assets/icons/all.svg';
 import mark from '../assets/icons/mark.svg';
 import check from '../assets/icons/check.svg';
 import cross from '../assets/icons/cross.svg';

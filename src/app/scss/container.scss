@@ -1,6 +1,17 @@
 .todo__container {
+    display: grid;
+    align-self: center;
+    gap: 20px;
+
     font-family: sans-serif;
-    width: min(600px, calc(100% - 40px));
+
+    width: calc(100% - 20px);
+    height: fit-content;
 
     background-color: $beige-200;
+
+    border-radius: 20px;
+
+    padding: 10px;
+    margin-inline: auto;
 }

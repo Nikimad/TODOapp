@@ -20,9 +20,13 @@ export default class ViewTODO {
         const updateAllButton = this.create.button(['todo__button__updateAll'], this.controller.updateAll);
         const form = this.create.form(this.controller.onSubmit);
         const body = this.create.container(['todo__body']);
+        const deletAllCompleted = this.create.button(['todo__button__delete'], this.controller.delete);
+        const wrapper = this.create.container(['todo__wrapper']);
+        deletAllCompleted.textContent = 'Clear completed';
 
         header.append(updateAllButton, form);
-        body.append(this.counter, this.tabs, this.list);
+        wrapper.append(this.counter, this.tabs);
+        body.append(wrapper, this.list, deletAllCompleted);
 
         this.container.append(header, body);
     }

@@ -28,4 +28,6 @@ export default class ControllerTODO {
         updateTask: (id, text) => this.model.updateTaskText(id, text),
         onDelete: (id) => this.model.deleteTask(id)
     }
+
+    delete = () => this.model.deletAllCompleted()
 }

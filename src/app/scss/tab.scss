@@ -5,8 +5,6 @@
 
     background-color: $white;
 
-    width: 100%;
-
     color: $gray-300;
     background-color: $gray-100;
 
@@ -15,6 +13,24 @@
     padding: 10px 10px 0;
 
     cursor: pointer;
+
+    text-indent: -999em;
+
+    &:nth-child(-n + 3) {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 1em;
+    }
+
+    &:nth-child(1) {
+        background-image: url('/src/assets/icons/all.svg');
+    }
+    &:nth-child(2) {
+        background-image: url('/src/assets/icons/active.svg');
+    }
+    &:nth-child(3) {
+        background-image: url('/src/assets/icons/completed.svg');
+    }
 
     &:hover {
         background-color: $gray-200;
@@ -29,4 +45,18 @@
         }
     }
 
+}
+
+@media (min-width: 500px) {
+    .todo__tab {
+        text-indent:0;
+
+        width: 100%;
+
+        &:nth-child(-n + 3) {
+            background-image: none;
+        }
+    }
+
+    
 }
