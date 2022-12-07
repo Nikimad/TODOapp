@@ -36,7 +36,7 @@ const config = {
                 test: /\.svg$/,
                 type: 'asset/resource',      
                 generator: {       
-                    filename: path.join('assets/icons', '[name].[ext]'),       
+                    filename: path.join('assets/icons', '[name][ext]'),       
                 },
             },
         ],
