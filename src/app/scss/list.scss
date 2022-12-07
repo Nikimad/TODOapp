@@ -5,7 +5,7 @@
 
     background-color: $white;
 
-    padding: 10px;
+    padding: 10px 10px 40px;
 
     &::-webkit-scrollbar {
         position:  relative;
@@ -23,4 +23,8 @@
     }
 
     overflow: auto;
+
+    & > .todo__task_undone:nth-child(even) {
+        background-color: $gray-100;
+    }
 }

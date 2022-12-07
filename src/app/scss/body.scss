@@ -1,8 +1,8 @@
 .todo__body {
     display: grid;
+    grid-template-rows: min-content 400px;
     align-items: center;
     column-gap: 20px;
-    grid-template-rows: min-content 400px;
 
     position: relative;
 

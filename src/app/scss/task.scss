@@ -6,12 +6,23 @@
     font-size: 16px;
     line-height: 18px;
 
+    transition: 0.3s;
+
+    border-radius: 5px;
+
     padding-inline: 10px;
+
+    &_undone {
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
 
     &_done {
         text-decoration: line-through;
 
         color: $gray-300;
+        background-color: $green;
     }
 
     &__update,
@@ -48,7 +59,8 @@
 
     &__text {
         min-height: 38px;
-        overflow-wrap: break-word;
+        
+        word-break: break-all;
 
         border-bottom: 1px solid $white;
     }
@@ -82,4 +94,6 @@
             }
         }
     }
+
+    
 }
