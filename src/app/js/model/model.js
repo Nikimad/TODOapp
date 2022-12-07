@@ -1,57 +1,37 @@
 export default class ModelTODO {
-  constructor(initalState = { tasks: [], finished: 0, active: 'all' }) {
+  constructor(initalState = { tasks: [], count: 0, filter: 'all' }) {
     this.state = initalState;
   }
 
   subscribers = [];
 
-  setState = (state) => {
-    const { updatedTasks, finished, active } = state;
+  addSubscriber = (subscriber) => {
+    this.subscribers = [...this.subscribers, subscriber];
+  };
 
-    this.state.tasks = updatedTasks ?? this.state.tasks;
-    this.state.finished = finished ?? this.state.finished;
-    this.state.active = active ?? this.state.active;
-
+  sendEvent = () => {
     this.subscribers.forEach((subscriber) => subscriber.listener(this.state));
   };
 
-  addTask = (task) => {
-    const { tasks } = this.state;
+  init = () => this.sendEvent();
 
-    const updatedTasks = [task, ...tasks];
+  setState = (state) => {
+    const { tasks, count, filter } = state;
 
-    this.setState({ updatedTasks });
+    this.state.tasks = tasks ?? this.state.tasks;
+    this.state.count = count ?? this.state.count;
+    this.state.filter = filter ?? this.state.filter;
+
+    this.sendEvent();
   };
 
-  deleteTask = (id) => {
-    const { tasks } = this.state;
+  add = (task) => {
+    const { tasks, count } = this.state;
 
-    const taskIndex = tasks.findIndex((task) => task.id === id);
-
-    const updatedTasks = [
-      ...tasks.slice(0, taskIndex),
-      ...tasks.slice(taskIndex + 1),
-    ];
-    const doneTasks = updatedTasks.filter((task) => task.status === 'done');
-
-    this.setState({ updatedTasks, finished: doneTasks.length });
+    this.setState({ tasks: [task, ...tasks], count: count + 1 });
   };
 
-  toggleAllTasksStatus = () => {
-    const { tasks, finished } = this.state;
-
-    const map = {
-      allDone: () => tasks.map((task) => Object.assign(task, { status: 'done' })),
-      allUndone: () => tasks.map((task) => Object.assign(task, { status: 'undone' })),
-    };
-
-    const updatedTasks = finished !== tasks.length ? map.allDone() : map.allUndone();
-    const doneTasks = updatedTasks.filter((task) => task.status === 'done');
-
-    this.setState({ updatedTasks, finished: doneTasks.length });
-  };
-
-  toggleTaskStatus = (id) => {
+  toggle = (id) => {
     const { tasks } = this.state;
 
     const updatedTasks = tasks.map((task) => {
@@ -63,39 +43,75 @@ export default class ModelTODO {
 
       return task;
     });
-    const doneTasks = updatedTasks.filter((task) => task.status === 'done');
+    const count = updatedTasks.filter((task) => task.status === 'undone').length;
 
-    this.setState({ updatedTasks, finished: doneTasks.length });
+    this.setState({ tasks: updatedTasks, count });
   };
 
-  updateTaskText = (id, text) => {
+  update = (id, text) => {
     const { tasks } = this.state;
 
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
-        return Object.assign(task, { text });
+        return Object.assign(task, { text,  edit: !task.edit });
       }
 
       return task;
     });
 
-    this.setState({ updatedTasks });
+    this.setState({ tasks: updatedTasks });
   };
 
-  updateActive = (active) => this.setState({ active });
+  edit = (id) => {
+    const { tasks } = this.state;
 
-  deletAllCompleted = () => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return Object.assign(task, { edit: !task.edit });
+      }
+
+      return task;
+    });
+
+    this.setState({ tasks: updatedTasks });
+  }
+
+  delete = (id) => {
+      const { tasks } = this.state;
+  
+      const taskIndex = tasks.findIndex((task) => task.id === id);
+  
+      const updatedTasks = [
+        ...tasks.slice(0, taskIndex),
+        ...tasks.slice(taskIndex + 1),
+      ];
+  
+      const count = updatedTasks.filter((task) => task.status === 'undone').length;
+  
+      this.setState({ tasks: updatedTasks, count });
+  };
+
+  toggleAll = () => {
+    const { tasks, count } = this.state;
+
+    const map = {
+      allDone: () => tasks.map((task) => Object.assign(task, { status: 'done' })),
+      allUndone: () => tasks.map((task) => Object.assign(task, { status: 'undone' })),
+    };
+
+    const updatedTasks = count !== 0 ? map.allDone() : map.allUndone();
+    const updatedCount = updatedTasks.filter((task) => task.status === 'undone').length;
+
+    this.setState({ tasks: updatedTasks, count: updatedCount });
+  };
+
+  clearCompleted = () => {
     const { tasks } = this.state;
 
     const updatedTasks = tasks.filter((task) => task.status === 'undone');
-    const doneTasks = updatedTasks.filter((task) => task.status === 'done');
 
-    this.setState({ updatedTasks, finished: doneTasks.length });
+    this.setState({ tasks: updatedTasks });
   };
 
-  addSubscriber = (subscriber) => {
-    this.subscribers = [...this.subscribers, subscriber];
-
-    subscriber.listener(this.state);
-  };
+  updateFilter = (filter) => this.setState({ filter });
 }

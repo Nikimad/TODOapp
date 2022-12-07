@@ -1,4 +1,4 @@
-export default (name, text, active, onClick) => {
+export default (name, text, active, chooseFilter) => {
   const tab = document.createElement('li');
 
   tab.classList.add('todo__tab', `todo__tab__${name}`);
@@ -10,7 +10,7 @@ export default (name, text, active, onClick) => {
 
   tab.textContent = text;
 
-  tab.addEventListener('click', onClick);
+  tab.addEventListener('click', chooseFilter);
 
   return tab;
 };

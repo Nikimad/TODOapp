@@ -3,31 +3,47 @@ export default class ControllerTODO {
     this.model = model;
   }
 
-  onSubmit = (e) => {
+  addTask = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const taskName = formData.get('taskName');
+    const text = formData.get('text');
     const lastId = this.model.state.tasks[0]?.id ?? 0;
 
-    this.model.addTask({
-      text: taskName,
+    this.model.add({
+      text: text,
       id: lastId + 1,
       status: 'undone',
+      edit: false,
     });
 
     e.target.reset();
   };
 
-  choseTab = (e) => this.model.updateActive(e.target.dataset.name);
+  chooseFilter = (e) => this.model.updateFilter(e.target.dataset.name);
 
-  updateAll = () => this.model.toggleAllTasksStatus();
+  toggleAll = () => this.model.toggleAll();
 
-  taskHandler = {
-    onUpdate: (id) => this.model.toggleTaskStatus(id),
-    updateTask: (id, text) => this.model.updateTaskText(id, text),
-    onDelete: (id) => this.model.deleteTask(id),
+  toggle = (id) => this.model.toggle(id);
+
+  update = (e, id) => {
+    e.preventDefault();
+    const map = {
+      'focusout': () => e.target.parentNode,
+      'submit': () => e.target
+    }
+
+    const form = map[e.type]();
+
+    const formData = new FormData(form);
+    const text = formData.get('text');
+
+    this.model.update(id, text);
   };
 
-  delete = () => this.model.deletAllCompleted();
+  replace = (id) => this.model.edit(id);
+
+  delete = (id) => this.model.delete(id)
+
+  deleteAll = () => this.model.clearCompleted();
 }

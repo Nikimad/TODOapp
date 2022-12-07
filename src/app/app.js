@@ -24,6 +24,7 @@ export default class AppTODO {
 
     model.addSubscriber(view);
     view.mount(root);
+    model.init();
 
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('state', JSON.stringify(model.state));

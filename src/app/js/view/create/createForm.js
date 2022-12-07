@@ -8,7 +8,7 @@ export default (onSubmit) => {
   submitInput.classList.add('todo__submit');
 
   textInput.setAttribute('type', 'text');
-  textInput.setAttribute('name', 'taskName');
+  textInput.setAttribute('name', 'text');
   textInput.setAttribute('placeholder', 'Add new task');
   submitInput.setAttribute('type', 'submit');
   submitInput.value = '';
