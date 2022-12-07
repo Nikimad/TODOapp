@@ -20,6 +20,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.html',
+            favicon: './src/assets/icons/favicon.ico'
         }),
     ],
     module: {
@@ -34,10 +35,7 @@ const config = {
             },
             {
                 test: /\.svg$/,
-                type: 'asset/resource',      
-                generator: {       
-                    filename: path.join('assets/icons', '[name][ext]'),       
-                },
+                type: 'asset/inline',      
             },
         ],
     },
