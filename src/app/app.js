@@ -13,8 +13,9 @@ import ViewTODO from "./js/view/view";
 
 export default class AppTODO {
     init = (root, Model = ModelTODO, View = ViewTODO, Controller = ControllerTODO) => {
-
-        const model = new Model(JSON.parse(localStorage.getItem('state')));
+        
+        const initalState = JSON.parse(localStorage.getItem('state')) ?? undefined;
+        const model = new Model(initalState);
         const controller = new Controller(model);
         const view = new View(root, controller);
 
