@@ -1,18 +1,11 @@
 .todo__button__delete {
     position: absolute;
-
     bottom: 0;
-
     border: none;
-
     background-color: $white;
-
     max-width: 150px;
-
     cursor: pointer;
-
     transition: 0.3s;
-
     padding: 10px;
 
     &:hover,

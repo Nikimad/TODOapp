@@ -1,28 +1,21 @@
 .todo__list {
     position: relative;
-
     height: 100%;
-
     background-color: $white;
-
+    overflow: auto;
     padding: 10px 10px 40px;
 
     &::-webkit-scrollbar {
-        position:  relative;
-
+        position: relative;
         width: 2px;
-
         height: 95%;
     }
 
     &::-webkit-scrollbar-thumb {
         position: absolute;
         background-color: $gray-300;
-
         border-radius: 5px;
     }
-
-    overflow: auto;
 
     & > .todo__task_undone:nth-child(even) {
         background-color: $gray-100;

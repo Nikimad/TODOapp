@@ -6,14 +6,10 @@
 
 .todo__input {
     width: 100%;
-
     border: 0;
     background-color: $white;
-
     outline: none;
-
     transition: 0.3s;
-
     padding: 10px;
 
     &::placeholder {

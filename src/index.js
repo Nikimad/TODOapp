@@ -1,5 +1,5 @@
 import './scss/body.scss';
-import AppTODO from "./app/app";
+import AppTODO from './app/app';
 
 const root = document.querySelector('.root');
 

@@ -2,14 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 16px;
     line-height: 18px;
-
     transition: 0.3s;
-
     border-radius: 5px;
-
     padding-inline: 10px;
 
     &_undone {
@@ -20,7 +16,6 @@
 
     &_done {
         text-decoration: line-through;
-
         color: $gray-300;
         background-color: $green;
     }
@@ -28,29 +23,24 @@
     &__update,
     &__delete {
         border: 0;
-
         height: 1em;
-
         background-color: transparent;
         background-repeat: no-repeat;
         background-size: 1em;
         background-position: center center;
-
         cursor: pointer;
     }
 
     &__update {
         border-radius: 100%;
-
         border: 1px solid $gray-300;
-
         &:hover {
             border: 1px solid $black;
         }
     }
 
     &__delete {
-        background-image: url('/src/assets/icons/cross.svg');
+        background-image: url("/src/assets/icons/cross.svg");
 
         &:hover {
             filter: invert(3);
@@ -59,9 +49,7 @@
 
     &__text {
         min-height: 38px;
-        
         word-break: break-all;
-
         border-bottom: 1px solid $white;
     }
 
@@ -76,24 +64,20 @@
         font: inherit;
         outline: none;
         border: 0;
-
         padding: 10px;
         margin: 0;
     }
 
     &__form {
         border-bottom: 1px solid $black;
-
         margin-inline: auto;
     }
 
     &_done {
         .todo__task {
             &__update {
-                background-image: url('/src/assets/icons/check.svg');;
+                background-image: url("/src/assets/icons/check.svg");
             }
         }
     }
-
-    
 }

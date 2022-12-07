@@ -1,27 +1,22 @@
 .todo__button__updateAll {
-    background-image: url('/src/assets/icons/mark.svg');
-
+    background-image: url("/src/assets/icons/mark.svg");
     border-radius: 5px 0 0 5px;
 }
 
 .todo__submit {
-    background-image: url('/src/assets/icons/plus.svg');
-
+    background-image: url("/src/assets/icons/plus.svg");
     border-radius: 0 5px 5px 0;
 }
 
 .todo__button__updateAll,
 .todo__submit {
     width: 50px;
-
     border: 0;
     background-color: $white;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 1em;
-
     transition: 0.3s;
-
     cursor: pointer;
 
     &:hover,
@@ -31,7 +26,6 @@
 
     &:active {
         background-color: $gray-100;
-
         background-size: calc(1em * 0.9);
     }
 }

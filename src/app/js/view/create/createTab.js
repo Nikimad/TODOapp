@@ -1,16 +1,16 @@
 export default (name, text, active, onClick) => {
-    const tab = document.createElement('li');
+  const tab = document.createElement('li');
 
-    tab.classList.add('todo__tab', `todo__tab__${name}`);
-    if (active) {
-        tab.classList.add(`todo__tab_active`);
-    }
+  tab.classList.add('todo__tab', `todo__tab__${name}`);
+  if (active) {
+    tab.classList.add('todo__tab_active');
+  }
 
-    tab.setAttribute('data-name', name);
-    
-    tab.textContent = text;
+  tab.setAttribute('data-name', name);
 
-    tab.addEventListener('click', onClick);
+  tab.textContent = text;
 
-    return tab;
-}
+  tab.addEventListener('click', onClick);
+
+  return tab;
+};
