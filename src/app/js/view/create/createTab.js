@@ -1,20 +1,16 @@
 export default (name, text, active, onClick) => {
-    const tabWrapper = document.createElement('li');
-    const tabName = document.createElement('a');
+    const tab = document.createElement('li');
 
-    tabWrapper.classList.add('todo__tab');
-    tabName.classList.add(`todo__tab__${name}`);
+    tab.classList.add('todo__tab', `todo__tab__${name}`);
     if (active) {
-        tabName.classList.add(`active`);
+        tab.classList.add(`todo__tab_active`);
     }
 
-    tabName.setAttribute('data-name', name);
+    tab.setAttribute('data-name', name);
     
-    tabName.textContent = text;
+    tab.textContent = text;
 
-    tabName.addEventListener('click', onClick);
+    tab.addEventListener('click', onClick);
 
-    tabWrapper.append(tabName);
-
-    return tabWrapper;
+    return tab;
 }

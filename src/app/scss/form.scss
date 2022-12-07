@@ -12,10 +12,17 @@
 
     outline: none;
 
+    transition: 0.3s;
+
     padding: 10px;
 
     &::placeholder {
         font: inherit;
         color: $gray-300;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $gray-200;
     }
 }

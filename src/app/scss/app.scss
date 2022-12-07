@@ -3,6 +3,11 @@
 @import './header';
 @import './button';
 @import './form';
+@import './body';
+@import './tabs';
+@import './tab';
+@import './list';
+@import './counter';
 
 * {
     box-sizing: border-box;
@@ -11,7 +16,8 @@
 .todo {
     &__counter,
     &__list,
-    &__task__text {
+    &__task__text,
+    &__tabs {
         margin: 0;
     }
 
