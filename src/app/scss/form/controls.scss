@@ -1,4 +1,4 @@
-.todo__button__updateAll {
+.todo__toggleAll {
     background-image: url("/src/assets/icons/mark.svg");
     border-radius: 5px 0 0 5px;
 }
@@ -8,7 +8,27 @@
     border-radius: 0 5px 5px 0;
 }
 
-.todo__button__updateAll,
+.todo__deleteAll {
+    position: absolute;
+    bottom: 0;
+    border: none;
+    background-color: $white;
+    max-width: 150px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 10px;
+
+    &:hover,
+    &:focus {
+        background-color: $gray-200;
+    }
+
+    &:active {
+        background-color: $gray-100;
+    }
+}
+
+.todo__toggleAll,
 .todo__submit {
     width: 50px;
     border: 0;

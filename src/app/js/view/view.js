@@ -9,7 +9,7 @@ export default class ViewTODO {
     this.tabs = this.create.list(['todo__tabs']);
     this.list = this.create.list(['todo__list']);
     this.deletAllCompleted = this.create.button(
-      ['todo__button__delete', 'd-none'],
+      ['todo__deleteAll', 'd-none'],
       this.controller.deleteAll,
     );
     this.counter = this.create.counter();
@@ -22,7 +22,7 @@ export default class ViewTODO {
   initRender = () => {
     const header = this.create.container(['todo__header']);
     const toggleAll = this.create.button(
-      ['todo__button__updateAll'],
+      ['todo__toggleAll'],
       this.controller.toggleAll,
     );
     const form = this.create.form(this.controller.addTask);
@@ -31,10 +31,9 @@ export default class ViewTODO {
 
     this.deletAllCompleted.textContent = 'Clear completed';
 
-    header.append(toggleAll, form);
     wrapper.append(this.counter, this.tabs);
+    header.append(toggleAll, form);
     body.append(wrapper, this.list, this.deletAllCompleted);
-
     this.container.append(header, body);
   };
 
@@ -67,10 +66,16 @@ export default class ViewTODO {
     this.tabs.append(allTab, undoneTab, doneTab);
   };
 
-  renderList = (tasks) => {
+  renderList = (tasks, filter) => {
     this.list.innerHTML = '';
 
-    const tasksDOM = tasks.map((task) => this.create.task(
+    const tasksMap = {
+      all: () => tasks,
+      done: () => tasks.filter((task) => task.status === 'done'),
+      undone: () => tasks.filter((task) => task.status === 'undone'),
+    };
+
+    const tasksDOM = tasksMap[filter]().map((task) => this.create.task(
       task,
       this.controller.toggle,
       this.controller.update,
@@ -82,16 +87,6 @@ export default class ViewTODO {
     this.list.querySelector('input')?.focus();
   };
 
-  getTasks = (tasks, filter) => {
-    const map = {
-      all: () => tasks,
-      done: () => tasks.filter((task) => task.status === 'done'),
-      undone: () => tasks.filter((task) => task.status === 'undone'),
-    };
-
-    return map[filter]();
-  };
-
   toggleDeleteButton = (all, count) => {
     this.deletAllCompleted.classList[all > count ? 'remove' : 'add']('d-none'); 
   }
@@ -101,7 +96,7 @@ export default class ViewTODO {
 
     this.renderCounter(count);
     this.renderTabs(filter);
-    this.renderList(this.getTasks(tasks, filter));
+    this.renderList(tasks, filter);
     this.toggleDeleteButton(tasks.length, count);
   };
 

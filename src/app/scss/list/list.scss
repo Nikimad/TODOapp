@@ -1,3 +1,6 @@
+@import './counter';
+@import './tabs';
+
 .todo__list {
     position: relative;
     height: 100%;
@@ -19,5 +22,9 @@
 
     & > .todo__task_undone:nth-child(even) {
         background-color: $gray-100;
+
+        &:hover {
+            background-color: $gray-200;
+        }
     }
 }

@@ -1,0 +1,29 @@
+@import './controls';
+@import './content';
+
+.todo__task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    border-radius: 5px;
+    padding-inline: 10px;
+
+    &_undone {
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+
+    &_done {
+        text-decoration: line-through;
+        color: $gray-300;
+        background-color: $green;
+
+        .todo__task {
+            &__update {
+                background-image: url("/src/assets/icons/check.svg");
+            }
+        }
+    }
+}

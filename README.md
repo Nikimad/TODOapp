@@ -2,7 +2,7 @@
 
 - Project start - 02.12.22
 
-- Projec end - 07.12.22
+- Projec end - 08.12.22
 
 - [Deploy link](https://todo-nikimad.vercel.app/)
 
