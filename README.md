@@ -8,16 +8,19 @@
 
 ## Interface
 
-![interface](https://i.pinimg.com/originals/4f/6b/35/4f6b351240dca2077a47871e46b41258.jpg)
+![interface](https://i.pinimg.com/originals/53/d4/02/53d402514d99dc849614b55c3747e37b.jpg)
 
     1. Input for new task
     2. Submit button
     3. Complete all button/Activate all button(if all tasks are complete)
-    4. Filter tabs
-    5. Active task
-    6. Completed task
-    7. Delete task button
-    8. Delete all completed tasks button
+    4. Active tasks counter
+    5. Filter tabs
+    6. Active task
+    7. Completed task
+    8. Complete task button
+    9. Double click for update task
+    10. Delete task button
+    11. Delete all completed tasks button
 
 Project start-end - 02.12.22 - 08.12.22
 
