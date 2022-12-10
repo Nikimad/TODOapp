@@ -11,6 +11,8 @@ export default (onSubmit) => {
   textInput.setAttribute('name', 'text');
   textInput.setAttribute('placeholder', 'Add new task');
   submitInput.setAttribute('type', 'submit');
+
+  textInput.required = true;
   submitInput.value = '';
 
   form.append(textInput, submitInput);

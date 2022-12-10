@@ -7,13 +7,14 @@ export default class ControllerTODO {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const text = formData.get('text');
+    const text = formData.get('text').trim();
 
     return text;
   }
 
   addTask = (e) => {
     const text = this.getSubmitedText(e);
+
     const lastId = this.model.state.tasks[0]?.id ?? 0;
 
     this.model.add({
@@ -35,7 +36,7 @@ export default class ControllerTODO {
   update = (e, id) => {
     const text = this.getSubmitedText(e);
 
-    this.model.update(id, text);
+    text.length > 0 ? this.model.update(id, text) : this.model.delete(id);
   };
 
   replace = (id) => this.model.edit(id);
