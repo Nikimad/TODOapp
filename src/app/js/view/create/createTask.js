@@ -15,7 +15,11 @@ export default (task, toggleTask, updateTask, deleteTask, replace) => {
 
     form.append(input);
 
-    input.addEventListener('focusout', (e) => updateTask(e, task.id));
+    input.addEventListener('focusout', () => {
+      const submitEvent = new SubmitEvent('submit');
+
+      form.dispatchEvent(submitEvent);
+    });
     form.addEventListener('submit', (e) => updateTask(e, task.id));
 
     return form;

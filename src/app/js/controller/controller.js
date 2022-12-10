@@ -3,11 +3,17 @@ export default class ControllerTODO {
     this.model = model;
   }
 
-  addTask = (e) => {
+  getSubmitedText = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const text = formData.get('text');
+
+    return text;
+  }
+
+  addTask = (e) => {
+    const text = this.getSubmitedText(e);
     const lastId = this.model.state.tasks[0]?.id ?? 0;
 
     this.model.add({
@@ -27,16 +33,7 @@ export default class ControllerTODO {
   toggle = (id) => this.model.toggle(id);
 
   update = (e, id) => {
-    e.preventDefault();
-    const map = {
-      'focusout': () => e.target.parentNode,
-      'submit': () => e.target
-    }
-
-    const form = map[e.type]();
-
-    const formData = new FormData(form);
-    const text = formData.get('text');
+    const text = this.getSubmitedText(e);
 
     this.model.update(id, text);
   };
