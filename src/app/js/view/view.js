@@ -100,9 +100,9 @@ export default class ViewTODO {
     this.toggleDeleteButton(tasks.length, count);
   };
 
-  mount = (root) => {
+  mount = () => {
     this.initRender();
 
-    root.replaceWith(this.container);
+    this.root.replaceWith(this.container);
   };
 }

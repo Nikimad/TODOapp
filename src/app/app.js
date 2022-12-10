@@ -23,7 +23,7 @@ export default class AppTODO {
     const view = new View(root, controller);
 
     model.addSubscriber(view);
-    view.mount(root);
+    view.mount();
     model.init();
 
     window.addEventListener('beforeunload', () => {
