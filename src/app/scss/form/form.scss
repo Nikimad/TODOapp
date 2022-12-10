@@ -23,4 +23,11 @@
     &:focus {
         background-color: $gray-200;
     }
+
+    &:invalid {
+        &,
+        & + * {
+         background-color: rgb(255, 197, 197);
+        }
+    }
 }

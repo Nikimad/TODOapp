@@ -15,6 +15,8 @@ export default class ControllerTODO {
   addTask = (e) => {
     const text = this.getSubmitedText(e);
 
+    if (text.length === 0) return;
+
     const lastId = this.model.state.tasks[0]?.id ?? 0;
 
     this.model.add({
