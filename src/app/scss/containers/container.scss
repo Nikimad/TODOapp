@@ -5,10 +5,12 @@
     font-size: 16px;
     line-height: 18px;
     font-family: sans-serif;
-    width: calc(100% - 20px);
+    width: min(600px, 100% - 20px);
     height: fit-content;
     background-color: $gray-400;
     border-radius: 5px;
+    container-type: inline-size;
+    container-name: todo;
     padding: 10px;
     margin-inline: auto;
 }

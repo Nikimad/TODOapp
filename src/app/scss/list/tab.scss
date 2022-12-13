@@ -40,7 +40,7 @@
     }
 }
 
-@media (min-width: 500px) {
+@container todo (min-width: 400px) {
     .todo__tab {
         text-indent: 0;
 

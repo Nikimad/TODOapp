@@ -16,7 +16,12 @@ export default (onSubmit) => {
   textInput.pattern = '.*\\S.*';
 
   form.append(textInput, submitInput);
+  
+  textInput.addEventListener('focusout', () => {
+    const submitEvent = new SubmitEvent('submit');
 
+    form.dispatchEvent(submitEvent);
+  });
   form.addEventListener('submit', onSubmit);
 
   return form;
