@@ -27,7 +27,7 @@
     &:invalid {
         &,
         & + * {
-         background-color: rgb(255, 197, 197);
+         background-color: $red;
         }
     }
 }
